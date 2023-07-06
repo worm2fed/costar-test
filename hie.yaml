@@ -1,0 +1,14 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "costar-test:lib"
+
+    - path: "./app"
+      component: "costar-test:exe:costar-test-exe"
+
+    - path: "./tests"
+      component: "costar-test:test:costar-test-test"
+
+dependencies:
+  - ./package.yaml
+  - ./stack.yaml

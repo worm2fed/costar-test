@@ -105,6 +105,7 @@ library:
     - containers
     - mtl
     - time
+    - uuid
 
 executables:
   costar-test-exe:

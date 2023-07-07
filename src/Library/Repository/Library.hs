@@ -42,7 +42,7 @@ class Monad tx => LibraryRepository tx where
   -- | Gets 'Book's 'BookStatus' in 'Library'.
   getBookAvailability
     :: Book
-    -> tx BookStatus
+    -> tx (Maybe BookStatus)
 
   -- | Borrow 'Book' in 'Library' by 'Patron'.
   borrowBook

@@ -63,7 +63,7 @@ deletePatron :: LibraryRepository tx => Patron -> tx ()
 deletePatron = R.deletePatron
 
 -- | Gets 'Book's 'BookStatus' in 'Library'.
-getBookAvailability :: LibraryRepository tx => Book -> tx BookStatus
+getBookAvailability :: LibraryRepository tx => Book -> tx (Maybe BookStatus)
 getBookAvailability = R.getBookAvailability
 
 -- | Borrow 'Book' in 'Library' by 'Patron'.

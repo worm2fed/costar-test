@@ -3,6 +3,7 @@ module Env
   ( Env (..)
   , buildEnv
   , modifyLibrary
+  , getLibrary
   ) where
 
 import Relude
@@ -24,7 +25,8 @@ buildEnv = do
   eLibrary <-
     newIORef
       Library
-        { lBooks = Map.empty
+        { lBooksInLibrary = Map.empty
+        , lBooksBorrowed = Map.empty
         , lPatrons = Map.empty
         }
   pure Env{..}
@@ -35,3 +37,7 @@ modifyLibrary f = do
   storage <- asks eLibrary
   library <- readIORef storage
   atomicWriteIORef storage $ f library
+
+-- | Helper to get 'Library' from 'Env'.
+getLibrary :: (MonadReader Env m, MonadIO m) => m Library
+getLibrary = asks eLibrary >>= readIORef

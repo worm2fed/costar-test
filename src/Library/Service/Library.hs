@@ -32,7 +32,7 @@ addBook
   => BookTitle
   -> Name
   -> ISBN
-  -> tx ()
+  -> tx Book
 addBook title author isbn = do
   book <- createBook title author isbn
   R.addBook book
@@ -52,7 +52,7 @@ findBook
 findBook = R.findBook
 
 -- | Add 'Patron' to 'Library'.
-addPatron :: (MonadIO tx, LibraryRepository tx) => Name -> tx ()
+addPatron :: (MonadIO tx, LibraryRepository tx) => Name -> tx Patron
 addPatron name = do
   patron <- liftIO UUID.nextRandom >>= createPatron name
   R.addPatron patron

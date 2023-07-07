@@ -15,7 +15,7 @@ class Monad tx => LibraryRepository tx where
   -- | Add 'Book' to 'Library'.
   addBook
     :: Book
-    -> tx ()
+    -> tx Book
 
   -- | Removes 'Book' from 'Library'.
   removeBook
@@ -32,7 +32,7 @@ class Monad tx => LibraryRepository tx where
   -- | Add 'Patron' to 'Library'.
   addPatron
     :: Patron
-    -> tx ()
+    -> tx Patron
 
   -- | Delete 'Patron' from 'Library'.
   deletePatron

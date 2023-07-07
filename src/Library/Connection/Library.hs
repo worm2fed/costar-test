@@ -20,10 +20,11 @@ import Library.Repository.Library (LibraryRepository (..))
 import Monad (App)
 
 instance LibraryRepository App where
-  addBook :: Book -> App ()
+  addBook :: Book -> App Book
   addBook book@Book{bId} = do
     modifyLibrary $ \library@Library{..} ->
       library{lBooksInLibrary = Map.insert bId book lBooksInLibrary}
+    pure book
 
   removeBook :: Book -> App ()
   removeBook Book{bId} = do
@@ -44,10 +45,11 @@ instance LibraryRepository App where
             lBooksInLibrary
     pure . fmap snd . viaNonEmpty head $ Map.toList books
 
-  addPatron :: Patron -> App ()
+  addPatron :: Patron -> App Patron
   addPatron patron@Patron{pId} = do
     modifyLibrary $ \library@Library{..} ->
       library{lPatrons = Map.insert pId patron lPatrons}
+    pure patron
 
   deletePatron :: Patron -> App ()
   deletePatron Patron{pId} = do

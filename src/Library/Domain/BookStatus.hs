@@ -4,6 +4,8 @@ module Library.Domain.BookStatus
 
 import Relude
 
+import Data.Time (UTCTime)
+
 -- | Current 'Book' status.
-data BookStatus = Available | Borrowed
+data BookStatus = Available | Borrowed UTCTime
   deriving stock (Show, Eq)

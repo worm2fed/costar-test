@@ -17,7 +17,9 @@ import Relude
 import Control.Monad.Except qualified as E
 
 -- | Errors in application.
-data Error = NotImplemented
+data Error
+  = NotImplemented
+  | BookNotAvailable
   deriving stock (Show, Eq)
 
 -- | Type alias for errors that has access to 'CallStack'.

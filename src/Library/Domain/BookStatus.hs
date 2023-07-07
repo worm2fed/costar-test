@@ -7,5 +7,5 @@ import Relude
 import Data.Time (UTCTime)
 
 -- | Current 'Book' status.
-data BookStatus = Available | Borrowed UTCTime
+data BookStatus = Available | NotAvailable | Borrowed UTCTime
   deriving stock (Show, Eq)

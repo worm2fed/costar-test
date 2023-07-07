@@ -14,8 +14,9 @@ import Relude
 import Data.Time (UTCTime)
 import Data.UUID.V4 qualified as UUID
 
-import Library.Domain.Book (Book)
-import Library.Domain.BookStatus (BookStatus)
+import Error (Error (..), WithError, throwError)
+import Library.Domain.Book (Book (..))
+import Library.Domain.BookStatus (BookStatus (..))
 import Library.Domain.BookTitle (BookTitle)
 import Library.Domain.ISBN (ISBN)
 import Library.Domain.Library (Library)
@@ -64,9 +65,15 @@ getBookAvailability = R.getBookAvailability
 
 -- | Borrow 'Book' in 'Library' by 'Patron'.
 borrowBook
-  :: LibraryRepository tx => Library -> Patron -> Book -> UTCTime -> tx ()
-borrowBook library patron book due = do
-  -- TODO: add check that book is available
+  :: (LibraryRepository tx, WithError tx)
+  => Library
+  -> Patron
+  -> Book
+  -> UTCTime
+  -> tx ()
+borrowBook library patron book@Book{bStatus} due = do
+  unless (bStatus == Available) $
+    throwError BookNotAvailable
   -- TODO: add check that due is not in past
   R.borrowBook library patron $
     markBookBorrowed book due

@@ -33,6 +33,18 @@ class Monad tx => LibraryRepository tx where
     -> Maybe ISBN
     -> tx (Maybe Book)
 
+  -- | Add 'Patron' to 'Library'.
+  addPatron
+    :: Library
+    -> Patron
+    -> tx ()
+
+  -- | Delete 'Patron' from 'Library'.
+  deletePatron
+    :: Library
+    -> Patron
+    -> tx ()
+
   -- | Gets 'Book's 'BookStatus' in 'Library'.
   getBookAvailability
     :: Library

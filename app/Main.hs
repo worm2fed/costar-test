@@ -1,8 +1,14 @@
-module Main (main) where
+module Main
+  ( main
+  ) where
 
 import Relude
 
-import Lib
+import Main.Utf8 (withUtf8)
+
+import Application (application)
 
 main :: IO ()
-main = someFunc
+main = withUtf8 $ do
+  hSetBuffering stdout LineBuffering
+  application

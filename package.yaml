@@ -122,6 +122,8 @@ executables:
     dependencies:
       - costar-test
 
+      - with-utf8
+
 tests:
   costar-test-test:
     main: Spec.hs

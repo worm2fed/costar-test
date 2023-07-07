@@ -1,5 +1,5 @@
 module Library.Domain.BookStatus
-  ( BookStatus
+  ( BookStatus (..)
   ) where
 
 import Relude

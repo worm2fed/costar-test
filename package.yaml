@@ -104,6 +104,7 @@ library:
   dependencies:
     - containers
     - mtl
+    - pretty-simple
     - time
     - uuid
 

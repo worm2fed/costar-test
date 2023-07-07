@@ -4,11 +4,13 @@ module Env
   , buildEnv
   , modifyLibrary
   , getLibrary
+  , logLibraryState
   ) where
 
 import Relude
 
 import Data.Map.Strict qualified as Map
+import Text.Pretty.Simple (pPrint)
 
 import Library.Domain.Library (Library (..))
 
@@ -41,3 +43,7 @@ modifyLibrary f = do
 -- | Helper to get 'Library' from 'Env'.
 getLibrary :: (MonadReader Env m, MonadIO m) => m Library
 getLibrary = asks eLibrary >>= readIORef
+
+-- | Helper to log current 'Library' state.
+logLibraryState :: (MonadReader Env m, MonadIO m) => m ()
+logLibraryState = getLibrary >>= pPrint

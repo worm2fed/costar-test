@@ -2,6 +2,8 @@ module Library.Domain.Patron
   ( Patron (..)
   ) where
 
+import Relude
+
 import Data.UUID (UUID)
 
 import Library.Domain.LibraryCardNumber (LibraryCardNumber)
@@ -15,3 +17,4 @@ data Patron = Patron
   , pNumber :: LibraryCardNumber
   -- ^ Library card number.
   }
+  deriving stock (Show)

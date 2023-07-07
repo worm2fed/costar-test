@@ -2,6 +2,8 @@ module Library.Domain.Book
   ( Book (..)
   ) where
 
+import Relude
+
 import Data.UUID (UUID)
 
 import Library.Domain.BookStatus (BookStatus)
@@ -20,3 +22,4 @@ data Book = Book
   -- ^ International Standard Book Number.
   , bStatus :: BookStatus
   }
+  deriving stock (Show)

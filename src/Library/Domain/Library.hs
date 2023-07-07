@@ -2,7 +2,7 @@ module Library.Domain.Library
   ( Library (..)
   ) where
 
-import Data.Map (Map)
+import Relude
 
 import Data.UUID (UUID)
 import Library.Domain.Book (Book)
@@ -16,3 +16,4 @@ data Library = Library
   , lPatrons :: Map UUID Patron
   -- ^ Library patrons.
   }
+  deriving stock (Show)

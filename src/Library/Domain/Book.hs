@@ -2,15 +2,15 @@ module Library.Domain.Book
   ( Book (..)
   ) where
 
-import Relude
-
 import Library.Domain.BookStatus (BookStatus)
+import Library.Domain.BookTitle (BookTitle)
 import Library.Domain.ISBN (ISBN)
+import Library.Domain.Name (Name)
 
 data Book = Book
-  { bTitle :: Text
+  { bTitle :: BookTitle
   -- ^ Book title.
-  , bAuthor :: Text
+  , bAuthor :: Name
   -- ^ Book author.
   , bISBN :: ISBN
   -- ^ International Standard Book Number.

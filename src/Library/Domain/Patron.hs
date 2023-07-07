@@ -2,12 +2,11 @@ module Library.Domain.Patron
   ( Patron (..)
   ) where
 
-import Relude
-
 import Library.Domain.LibraryNumber (LibraryCardNumber)
+import Library.Domain.Name (Name)
 
 data Patron = Patron
-  { pName :: Text
+  { pName :: Name
   -- ^ Patron name.
   , pNumber :: LibraryCardNumber
   -- ^ Library card number.

@@ -6,8 +6,10 @@ import Relude
 
 import Library.Domain.Book (Book)
 import Library.Domain.BookStatus (BookStatus)
+import Library.Domain.BookTitle (BookTitle)
 import Library.Domain.ISBN (ISBN)
 import Library.Domain.Library (Library)
+import Library.Domain.Name (Name)
 import Library.Domain.Patron (Patron)
 
 class Monad tx => LibraryRepository tx where
@@ -26,8 +28,8 @@ class Monad tx => LibraryRepository tx where
   -- | Finds 'Book' in 'Library'.
   findBook
     :: Library
-    -> Maybe Text
-    -> Maybe Text
+    -> Maybe BookTitle
+    -> Maybe Name
     -> Maybe ISBN
     -> tx (Maybe Book)
 

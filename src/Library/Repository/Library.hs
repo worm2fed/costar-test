@@ -8,59 +8,50 @@ import Library.Domain.Book (Book)
 import Library.Domain.BookStatus (BookStatus)
 import Library.Domain.BookTitle (BookTitle)
 import Library.Domain.ISBN (ISBN)
-import Library.Domain.Library (Library)
 import Library.Domain.Name (Name)
 import Library.Domain.Patron (Patron)
 
 class Monad tx => LibraryRepository tx where
   -- | Add 'Book' to 'Library'.
   addBook
-    :: Library
-    -> Book
+    :: Book
     -> tx ()
 
   -- | Removes 'Book' from 'Library'.
   removeBook
-    :: Library
-    -> Book
+    :: Book
     -> tx ()
 
   -- | Finds 'Book' in 'Library'.
   findBook
-    :: Library
-    -> Maybe BookTitle
+    :: Maybe BookTitle
     -> Maybe Name
     -> Maybe ISBN
     -> tx (Maybe Book)
 
   -- | Add 'Patron' to 'Library'.
   addPatron
-    :: Library
-    -> Patron
+    :: Patron
     -> tx ()
 
   -- | Delete 'Patron' from 'Library'.
   deletePatron
-    :: Library
-    -> Patron
+    :: Patron
     -> tx ()
 
   -- | Gets 'Book's 'BookStatus' in 'Library'.
   getBookAvailability
-    :: Library
-    -> Book
+    :: Book
     -> tx BookStatus
 
   -- | Borrow 'Book' in 'Library' by 'Patron'.
   borrowBook
-    :: Library
-    -> Patron
+    :: Patron
     -> Book
     -> tx ()
 
   -- | Return 'Book' to 'Library' by 'Patron'.
   returnBook
-    :: Library
-    -> Patron
+    :: Patron
     -> Book
     -> tx ()

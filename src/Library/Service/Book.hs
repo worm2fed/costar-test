@@ -7,6 +7,8 @@ module Library.Service.Book
 import Relude
 
 import Data.Time (UTCTime)
+import Data.UUID.V4 qualified as UUID
+
 import Library.Domain.Book (Book (..))
 import Library.Domain.BookStatus (BookStatus (..))
 import Library.Domain.BookTitle (BookTitle)
@@ -14,11 +16,13 @@ import Library.Domain.ISBN (ISBN)
 import Library.Domain.Name (Name)
 
 -- | Creates a new 'Book'.
-createBook :: Monad tx => BookTitle -> Name -> ISBN -> tx Book
-createBook title author isbn =
+createBook :: MonadIO tx => BookTitle -> Name -> ISBN -> tx Book
+createBook title author isbn = do
+  uuid <- liftIO UUID.nextRandom
   pure $
     Book
-      { bTitle = title
+      { bId = uuid
+      , bTitle = title
       , bAuthor = author
       , bISBN = isbn
       , bStatus = Available

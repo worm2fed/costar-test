@@ -2,12 +2,15 @@ module Library.Domain.Library
   ( Library (..)
   ) where
 
+import Data.Map (Map)
+
+import Data.UUID (UUID)
 import Library.Domain.Book (Book)
-import Library.Domain.LibraryNumber (LibraryCardNumber)
+import Library.Domain.Patron (Patron)
 
 data Library = Library
-  { lBooks :: [Book]
+  { lBooks :: Map UUID Book
   -- ^ Books in library.
-  , lPatrons :: [LibraryCardNumber]
+  , lPatrons :: Map UUID Patron
   -- ^ Library patrons.
   }

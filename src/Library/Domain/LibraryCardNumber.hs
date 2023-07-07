@@ -1,4 +1,4 @@
-module Library.Domain.LibraryNumber
+module Library.Domain.LibraryCardNumber
   ( LibraryCardNumber
   ) where
 

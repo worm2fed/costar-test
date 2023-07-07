@@ -1,9 +1,6 @@
 -- | This module defines application and environment.
 module Monad
   ( App
-
-    -- * Environment
-  , Env (..)
   , runWithEnv
   ) where
 
@@ -12,6 +9,7 @@ import Relude
 import Control.Exception (catch, throwIO)
 import Control.Monad.Except (MonadError (..))
 
+import Env (Env, buildEnv)
 import Error (ErrorWithSource)
 
 -- | Main application monad.
@@ -39,18 +37,6 @@ instance MonadError ErrorWithSource App where
     let run = usingReaderT env . runApp
     run action `catch` \e -> run $ handler e
   {-# INLINE catchError #-}
-
--- | App environment.
-data Env = Env
-  { eStorage :: ![Text]
-  -- ^ Mock starage
-  }
-
--- | Create 'Env'.
-buildEnv :: IO Env
-buildEnv = do
-  let eStorage = []
-  pure Env{..}
 
 -- | Runs provided action with new 'Env'.
 runWithEnv :: App a -> IO a
